@@ -22,10 +22,13 @@ console.log(data);
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-data.forEach(function(item, index, array) {
+data.forEach(function(item, index, data) {
   console.log('*****************')
-  data[i].forEach(function(item, index, array) {
-  console.log(item.key + ' = ' + item)	
+
+  Object.keys(data[index]).forEach(function( element) {
+  	var _val = data[index][element];
+  	console.log( element + ' = ' + _val )
   })    
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////
