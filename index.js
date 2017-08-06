@@ -22,13 +22,24 @@ console.log(data);
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-data.forEach(function(item, index, data) {
-  console.log('*****************')
+// data.forEach(function(item, index, data) {
+//   console.log('*****************')
 
-  Object.keys(data[index]).forEach(function( element) {
-  	var _val = data[index][element];
-  	console.log( element + ' = ' + _val )
-  })    
-});
+//   Object.keys(data[index]).forEach(function( element) {
+//   	var _val = data[index][element];
+//   	console.log( element + ' = ' + _val )
+//   })    
+// });
 
 ////////////////////////////////////////////////////////////////////////////////////////////
+
+// data.map(function(item, i, data) {
+// 	console.log ('=================');
+//   		Object.keys(data[i]).map(function(prop) {
+//   			var _value = data[i][prop];
+//   			console.log (prop + ' = ' + _value);
+// 	})
+// });
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
