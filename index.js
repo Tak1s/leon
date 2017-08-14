@@ -1,5 +1,4 @@
 import data from './mock/data';
-console.log(data);
 
 //------------------------------------TASK_1----------------------------------------------//
 
@@ -43,4 +42,10 @@ console.log(data);
 // 	})
 // });
 
+_.map(data, function(value, key, ) {
+	console.log ('===== '+ key +' =====');
+    	_.map(data[key], function(val, k) {
+  		console.log ( k + " = " + val);
+	});
+});
 
