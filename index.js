@@ -71,17 +71,19 @@ import data from './mock/data';
 
 //------------------------------------TASK_3----------------------------------------------//
 
-_.map(data, function(value, key, ) {
-	var _dataKey = '===== '+ key +' ====='; 
-	console.log (_dataKey);
-    	_.map(data[key], function(val, k) {
-    	var _dataKeyKVal = k + " = " + val; 
-  		console.log ( _dataKeyKVal );
+	_.map(data, function(value, key, ) {
+		var _dataKey = "<h3>" + '===== '+ key +' =====' + "</h3>"; 
+		document.write( '<div>' );
+		document.write( _dataKey );
+	    	_.map(data[key], function(val, k) {
+	    	var _dataKeyKVal = "<p>" + k + " = " + "<span>" + val + "</span>" + " </p>" ; 
+	  		document.write( _dataKeyKVal );
+		});
+	    document.write( '</div>' );
 	});
-});
 
-var any_string = '<h1> Lorem ipsum </h1>';
+// var any_string = '<h1>lorem ipsum</h1>';
 
-document.body.innerHTML = any_string;
+// document.body.innerHTML = any_string;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
