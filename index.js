@@ -86,15 +86,18 @@ import data from './mock/data';
 
 	_.map(data, function(value, key, ) {
 		var div = document.createElement("div");
-		document.body.appendChild(div);
 		div.innerHTML = `<h3> ===== ${key} ===== </h3>`;
 		
 	    	_.map(data[key], function(val, k) {
 		  		var p = document.createElement("p");
-		  		div.appendChild(p);
 		  		p.innerHTML = ` ${k} = <span> ${val} </span> `;
+		  		div.appendChild(p);
+		  		
 			});
+		document.body.appendChild(div);
 	});
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
