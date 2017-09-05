@@ -44,10 +44,10 @@ import data from './mock/data';
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-// _.map(data, function(value, key, ) {
+// _.map(data, function(value, key) {
 // 	var _dataKey = '===== '+ key +' ====='; 
 // 	console.log (_dataKey);
-//     	_.map(data[key], function(val, k) {
+//     	_.map(value, function(val, k) {
 //     	var _dataKeyKVal = k + " = " + val; 
 //   		console.log ( _dataKeyKVal );
 // 	});
@@ -71,11 +71,11 @@ import data from './mock/data';
 
 //------------------------------------TASK_3----------------------------------------------//
 
-	// _.map(data, function(value, key, ) {
+	// _.map(data, function(value, key) {
 	// 	var _dataKey = "<h3>" + '===== '+ key +' =====' + "</h3>"; 
 	// 	document.write( '<div>' );
 	// 	document.write( _dataKey );
-	//     	_.map(data[key], function(val, k) {
+	//     	_.map(value, function(val, k) {
 	//     	var _dataKeyKVal = "<p>" + k + " = " + "<span>" + val + "</span>" + " </p>" ; 
 	//   		document.write( _dataKeyKVal );
 	// 	});
@@ -84,23 +84,47 @@ import data from './mock/data';
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-	_.map(data, function(value, key, ) {
-		var div = document.createElement("div");
-		div.innerHTML = `<h3> ===== ${key} ===== </h3>`;
-		
-	    	_.map(data[key], function(val, k) {
-		  		var p = document.createElement("p");
-		  		p.innerHTML = ` ${k} = <span> ${val} </span> `;
-		  		div.appendChild(p);
-		  		
-			});
-		document.body.appendChild(div);
-	});
+	// _.map(data, function(value, key) {
+	// 	var div = document.createElement("div");
+	// 	div.innerHTML = `<h3> ===== ${key} ===== </h3>`;
 
-
+	//     	_.map(value, function(val, k) {
+	// 	  		var p = document.createElement("p");
+	// 	  		p.innerHTML = ` ${k} = <span> ${val} </span> `;
+	// 	  		div.appendChild(p);
+	// 		});
+	// 	document.body.appendChild(div);
+	// });
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
+	// _.map(data, function(value, key) {
+	// 	var div = document.getElementById('root');
+	// 	var h3 = document.createElement("h3");
+	// 	h3.innerHTML = ` ===== ${key} ===== `;
+	// 	div.appendChild(h3);
 
+	//     	_.map(value, function(val, k) {
+	// 	  		var p = document.createElement("p");
+	// 	  		p.innerHTML = ` ${k} = <span> ${val} </span> `;
+	// 	  		div.appendChild(p);
+	// 		});
+	// });
 
+///////////////////////////////////////////////////////////////////////////////////////////
+	
+	_.map(data, function(value, key) {
+		var div = document.querySelector("#root");
+		var h3 = document.createElement("h3");
+		h3.innerHTML = ` ===== ${key} ===== `;
+		div.appendChild(h3);
+
+	    	_.map(value, function(val, k) {
+		  		var p = document.createElement("p");
+		  		p.innerHTML = ` ${k} = <span> ${val} </span> `;
+		  		div.appendChild(p);
+			});
+	});
+
+///////////////////////////////////////////////////////////////////////////////////////////
 
