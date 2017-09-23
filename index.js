@@ -1,28 +1,37 @@
 import data from './mock/data';
 import $ from 'jquery';
-
-// var source   = $("#entry-template").html();
-// var template = handlebars.compile(source);
+// import jR from 'jsrender';
+// import handlebars from 'handlebars';
+// import hogan from 'hogan.js';
+import mustache from 'mustache';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// _.map(data, function(value, key) {
+//  		$( "#root" ).append( "<h3> =====| " + key + " |===== </h3>" );  
+//  	    	_.map(value, function(val, k) {
+//   		  		var p = document.createElement( "p" );
+//   		  		$( p ).append( k + "=" + "<span>" + val + "</span>");	  		  		
+//   		  		$('#root').append(p);	  		  				
+//   			});
+//  	    });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 _.map(data, function(value, key) {
- 		$( "#root" ).append( "<h3> =====| " + key + " |===== </h3>" );  
+ 		var hat = {'title': "===== " + key + " ====="}
+ 		var tmpl_1 = document.getElementById("template_1").innerHTML;
+		var output_title = mustache.to_html(tmpl_1, hat);
+		$('#root').append(output_title);
+
  	    	_.map(value, function(val, k) {
-  		  		var p = document.createElement( "p" );
-  		  		$( p ).append( k + "=" + "<span>" + val + "</span>");	  		  		
-  		  		$('#root').append(p);	  		  				
+  		  		var _value = {
+  		  			'keyWord': k ,
+  		  			'value_': val 
+  		  		}
+  		  		var tmpl_2 = document.getElementById("template_2").innerHTML;
+  		  		var output_value = mustache.to_html(tmpl_2, _value);
+  		  		$('#root').append(output_value);		  				
   			});
  	    });
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// var tumblr = require('tumblr.js');
-// var client = tumblr.createClient({
-//   consumer_key: 'Y1D72WCSyyKAe5owRcr7n0j5WAVhITMOCqrW2phNLWzKZfcHCZ',
-//   consumer_secret: 'Ey25jfEaEa18Uvzpr74TX1uhPWLCmjB0L8qq8NjRfO9DLa0SmG',
-//   token: 'B32lrmOWMJzJZqwulkUWi2tLva2CBn9sj7YT2ytA7eXPf2Rz2T',
-//   token_secret: '5EWnDHW0YXffiT5kWRs8LOQhTkg4PteitM8TkbPlz2XnJob461'
-// });
