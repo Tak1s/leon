@@ -1,9 +1,10 @@
 import data from './mock/data';
 import $ from 'jquery';
+import mustache from 'mustache';
 // import jR from 'jsrender';
 // import handlebars from 'handlebars';
 // import hogan from 'hogan.js';
-import mustache from 'mustache';
+import tumblr from 'tumblr.js';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,4 +35,28 @@ _.map(data, function(value, key) {
   		  		$('#root').append(output_value);		  				
   			});
  	    });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// var client = tumblr.createClient({ consumer_key: 'Y1D72WCSyyKAe5owRcr7n0j5WAVhITMOCqrW2phNLWzKZfcHCZ' });
+var client = tumblr.createClient({
+  consumer_key: 'Y1D72WCSyyKAe5owRcr7n0j5WAVhITMOCqrW2phNLWzKZfcHCZ',
+  consumer_secret: 'Ey25jfEaEa18Uvzpr74TX1uhPWLCmjB0L8qq8NjRfO9DLa0SmG',
+  token: 'LN7ySxEthypGmcuMEpixksHwJJOsCpNOexdlzAYyb5OEX8cKtz',
+  token_secret: 'Ea55kvKy7GyAktmCZcDN3c9bDBxgiW8hdcP04kK2ITr51QQH5V'
+});
+
+client.userInfo(function(err, data) {
+  data.user.blogs.forEach(function(blog) {
+    console.log(blog.name);
+  });
+});
+
+// client.posts('pasajero-0.tumblr.com', { type: 'photo', tag: '#ships' }, function (err, data) {
+// 	var photo_plate = {'phPlate': "= " + data + " ="}
+// 	var tmpl_tumblr = document.getElementById("template_tumblr").innerHTML;
+// 	var output_tumblr = mustache.to_html(tmpl_tumblr, photo_plate);
+// 	$('#root').append(output_tumblr);
+   
+// });
 

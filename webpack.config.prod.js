@@ -15,6 +15,14 @@ config = {
             'lodash'
         ]
     },
+    /////////////////
+     node: {
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      dns: 'empty'
+    },
+    /////////////////
     output: {
         path: "./compressed/",
         publicPath : '/assets/',
