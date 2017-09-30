@@ -19,22 +19,22 @@ import tumblr from 'tumblr.js';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-_.map(data, function(value, key) {
- 		var hat = {'title': "===== " + key + " ====="}
- 		var tmpl_1 = document.getElementById("template_1").innerHTML;
-		var output_title = mustache.to_html(tmpl_1, hat);
-		$('#root').append(output_title);
+// _.map(data, function(value, key) {
+//  		var hat = {'title': "===== " + key + " ====="}
+//  		var tmpl_1 = document.getElementById("template_1").innerHTML;
+// 		var output_title = mustache.to_html(tmpl_1, hat);
+// 		$('#root').append(output_title);
 
- 	    	_.map(value, function(val, k) {
-  		  		var _value = {
-  		  			'keyWord': k ,
-  		  			'value_': val 
-  		  		}
-  		  		var tmpl_2 = document.getElementById("template_2").innerHTML;
-  		  		var output_value = mustache.to_html(tmpl_2, _value);
-  		  		$('#root').append(output_value);		  				
-  			});
- 	    });
+//  	    	_.map(value, function(val, k) {
+//   		  		var _value = {
+//   		  			'keyWord': k ,
+//   		  			'value_': val 
+//   		  		}
+//   		  		var tmpl_2 = document.getElementById("template_2").innerHTML;
+//   		  		var output_value = mustache.to_html(tmpl_2, _value);
+//   		  		$('#root').append(output_value);		  				
+//   			});
+//  	    });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -51,20 +51,20 @@ client.userInfo(function(err, data) {
   });
 });
 
-client.posts('pasajero-0.tumblr.com', { type: 'photo', tag: '#ships' }, function (err, data) {
-	var photo_plate = {'phPlate': "= " + data + " ="}
-	var tmpl_tumblr = document.getElementById("template_tumblr").innerHTML;
-	var output_tumblr = mustache.to_html(tmpl_tumblr, photo_plate);
-	$('#root').append(output_tumblr);  
+client.blogAvatar('pasajero-0.tumblr.com', 300, function (err, data) {
+    document.write(data);
 });
 
 
+// client.blogPosts('pasajero-0.tumblr.com', { type: 'photo', tag: '#ships' }, function (err, data) {
+// 	document.write(data);
+// 	console.log(data);
 
-
-
-
-
-
+// 	// var photo_plate = {'phPlate': "= " + data + " ="}
+// 	// var tmpl_tumblr = document.getElementById("template_tumblr").innerHTML;
+// 	// var output_tumblr = mustache.to_html(tmpl_tumblr, photo_plate);
+// 	// $('#root').append(output_tumblr);  
+// });
 
 
 
