@@ -38,7 +38,6 @@ _.map(data, function(value, key) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// var client = tumblr.createClient({ consumer_key: 'Y1D72WCSyyKAe5owRcr7n0j5WAVhITMOCqrW2phNLWzKZfcHCZ' });
 var client = tumblr.createClient({
   consumer_key: 'Y1D72WCSyyKAe5owRcr7n0j5WAVhITMOCqrW2phNLWzKZfcHCZ',
   consumer_secret: 'Ey25jfEaEa18Uvzpr74TX1uhPWLCmjB0L8qq8NjRfO9DLa0SmG',
@@ -52,11 +51,10 @@ client.userInfo(function(err, data) {
   });
 });
 
-// client.posts('pasajero-0.tumblr.com', { type: 'photo', tag: '#ships' }, function (err, data) {
-// 	var photo_plate = {'phPlate': "= " + data + " ="}
-// 	var tmpl_tumblr = document.getElementById("template_tumblr").innerHTML;
-// 	var output_tumblr = mustache.to_html(tmpl_tumblr, photo_plate);
-// 	$('#root').append(output_tumblr);
-   
-// });
+client.posts('pasajero-0.tumblr.com', { type: 'photo', tag: '#ships' }, function (err, data) {
+	var photo_plate = {'phPlate': "= " + data + " ="}
+	var tmpl_tumblr = document.getElementById("template_tumblr").innerHTML;
+	var output_tumblr = mustache.to_html(tmpl_tumblr, photo_plate);
+	$('#root').append(output_tumblr);  
+});
 
