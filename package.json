@@ -29,6 +29,7 @@
     "jquery": "^3.2.1",
     "js-cookie": "^2.1.4",
     "jsrender": "^0.9.88",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
     "mu2": "^0.5.21",
