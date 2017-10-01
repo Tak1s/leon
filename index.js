@@ -5,38 +5,7 @@ import mustache from 'mustache';
 // import handlebars from 'handlebars';
 import tumblr from 'tumblr.js';
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// _.map(data, function(value, key) {
-//  		$( "#root" ).append( "<h3> =====| " + key + " |===== </h3>" );  
-//  	    	_.map(value, function(val, k) {
-//   		  		var p = document.createElement( "p" );
-//   		  		$( p ).append( k + "=" + "<span>" + val + "</span>");	  		  		
-//   		  		$('#root').append(p);	  		  				
-//   			});
-//  	    });
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// _.map(data, function(value, key) {
-//  		var hat = {'title': "===== " + key + " ====="}
-//  		var tmpl_1 = document.getElementById("template_1").innerHTML;
-// 		var output_title = mustache.to_html(tmpl_1, hat);
-// 		$('#root').append(output_title);
-
-//  	    	_.map(value, function(val, k) {
-//   		  		var _value = {
-//   		  			'keyWord': k ,
-//   		  			'value_': val 
-//   		  		}
-//   		  		var tmpl_2 = document.getElementById("template_2").innerHTML;
-//   		  		var output_value = mustache.to_html(tmpl_2, _value);
-//   		  		$('#root').append(output_value);		  				
-//   			});
-//  	    });
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/////-----tumbler
 var client = tumblr.createClient({
   consumer_key: 'Y1D72WCSyyKAe5owRcr7n0j5WAVhITMOCqrW2phNLWzKZfcHCZ',
   consumer_secret: 'Ey25jfEaEa18Uvzpr74TX1uhPWLCmjB0L8qq8NjRfO9DLa0SmG',
@@ -44,30 +13,65 @@ var client = tumblr.createClient({
   token_secret: 'Ea55kvKy7GyAktmCZcDN3c9bDBxgiW8hdcP04kK2ITr51QQH5V'
 });
 
-
+/////-crimea
 client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
 	data.posts.forEach(function(posts){
 		posts.tags.forEach(function(tags){ 
-		var tag = "crimea";
-		if (tags === tag) {
-    		console.log("+");
-		};
-		console.log(posts.tags);
-		
+			var tag = "crimea";
+			if (tags === tag) {
+    			console.log("+");
+    			posts.photos.forEach(function(photos){	
+				var span = document.createElement( "span" );
+  				$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
+   				$('#root').append(span);
+				});
+			};
   		});
-		posts.photos.forEach(function(photos){
-		// console.log(photos.original_size.url);
-			photos.alt_sizes.forEach(function(alt_sizes){
-				// console.log(alt_sizes.url);
-			});
-
-		var span = document.createElement( "span" );
-  		$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
-   		$('#root').append(span);
-		});
+		
+	});  
+});
+/////-ships
+client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
+	data.posts.forEach(function(posts){
+		posts.tags.forEach(function(tags){ 
+			var tag = "ships";
+			if (tags === tag) {
+    			console.log("+");
+    			posts.photos.forEach(function(photos){	
+				var span = document.createElement( "span" );
+  				$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
+   				$('#root').append(span);
+				});
+			};
+  		});
+	});  
+});
+/////-starwars
+client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
+	data.posts.forEach(function(posts){
+		posts.tags.forEach(function(tags){ 
+			var tag = "starwars";
+			if (tags === tag) {
+    			console.log("+");
+    			posts.photos.forEach(function(photos){	
+				var span = document.createElement( "span" );
+  				$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
+   				$('#root').append(span);
+				});
+			};
+  		});
 	});
 	console.log(data);  
 });
+
+
+
+
+
+
+
+
+
 
 
 
@@ -200,5 +204,35 @@ client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
 	// 		});
 	// });
 
+
+//------------------------------------TASK_4----------------------------------------------//
+
+// _.map(data, function(value, key) {
+//  		$( "#root" ).append( "<h3> =====| " + key + " |===== </h3>" );  
+//  	    	_.map(value, function(val, k) {
+//   		  		var p = document.createElement( "p" );
+//   		  		$( p ).append( k + "=" + "<span>" + val + "</span>");	  		  		
+//   		  		$('#root').append(p);	  		  				
+//   			});
+//  	    });
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 
+// _.map(data, function(value, key) {
+//  		var hat = {'title': "===== " + key + " ====="}
+//  		var tmpl_1 = document.getElementById("template_1").innerHTML;
+// 		var output_title = mustache.to_html(tmpl_1, hat);
+// 		$('#root').append(output_title);
+
+//  	    	_.map(value, function(val, k) {
+//   		  		var _value = {
+//   		  			'keyWord': k ,
+//   		  			'value_': val 
+//   		  		}
+//   		  		var tmpl_2 = document.getElementById("template_2").innerHTML;
+//   		  		var output_value = mustache.to_html(tmpl_2, _value);
+//   		  		$('#root').append(output_value);		  				
+//   			});
+//  	    });
+
+///////////////////////////////////////////////////////////////////////////////////////////
