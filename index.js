@@ -55,7 +55,7 @@ client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
     			console.log("+");
     			posts.photos.forEach(function(photos){	
 				var div = document.createElement( "div" );
-  				$( div ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
+  				$( div ).append('<img src="'+photos.original_size.url+'">');	  		  		
    				$('#root').append(div);
 				});
 			};
