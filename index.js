@@ -3,7 +3,6 @@ import $ from 'jquery';
 import mustache from 'mustache';
 // import jR from 'jsrender';
 // import handlebars from 'handlebars';
-// import hogan from 'hogan.js';
 import tumblr from 'tumblr.js';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,26 +44,30 @@ var client = tumblr.createClient({
   token_secret: 'Ea55kvKy7GyAktmCZcDN3c9bDBxgiW8hdcP04kK2ITr51QQH5V'
 });
 
-client.userInfo(function(err, data) {
-  data.user.blogs.forEach(function(blog) {
-    console.log(blog.name);
-  });
+
+client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
+	data.posts.forEach(function(posts){
+		posts.tags.forEach(function(tags){ 
+		var tag = "crimea";
+		if (tags === tag) {
+    		console.log("+");
+		};
+		console.log(posts.tags);
+		
+  		});
+		posts.photos.forEach(function(photos){
+		// console.log(photos.original_size.url);
+			photos.alt_sizes.forEach(function(alt_sizes){
+				// console.log(alt_sizes.url);
+			});
+
+		var span = document.createElement( "span" );
+  		$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
+   		$('#root').append(span);
+		});
+	});
+	console.log(data);  
 });
-
-client.blogAvatar('pasajero-0.tumblr.com', 300, function (err, data) {
-    document.write(data);
-});
-
-
-// client.blogPosts('pasajero-0.tumblr.com', { type: 'photo', tag: '#ships' }, function (err, data) {
-// 	document.write(data);
-// 	console.log(data);
-
-// 	// var photo_plate = {'phPlate': "= " + data + " ="}
-// 	// var tmpl_tumblr = document.getElementById("template_tumblr").innerHTML;
-// 	// var output_tumblr = mustache.to_html(tmpl_tumblr, photo_plate);
-// 	// $('#root').append(output_tumblr);  
-// });
 
 
 
