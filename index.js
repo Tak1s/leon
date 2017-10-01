@@ -13,6 +13,22 @@ var client = tumblr.createClient({
   token_secret: 'Ea55kvKy7GyAktmCZcDN3c9bDBxgiW8hdcP04kK2ITr51QQH5V'
 });
 
+/////-ships
+client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
+	data.posts.forEach(function(posts){
+		posts.tags.forEach(function(tags){ 
+			var tag = "ships";
+			if (tags === tag) {
+    			console.log("+");
+    			posts.photos.forEach(function(photos){	
+				var span = document.createElement( "span" );
+  				$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
+   				$('#root').append(span);
+				});
+			};
+  		});
+	});  
+});
 /////-crimea
 client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
 	data.posts.forEach(function(posts){
@@ -30,22 +46,6 @@ client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
 		
 	});  
 });
-/////-ships
-client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
-	data.posts.forEach(function(posts){
-		posts.tags.forEach(function(tags){ 
-			var tag = "ships";
-			if (tags === tag) {
-    			console.log("+");
-    			posts.photos.forEach(function(photos){	
-				var span = document.createElement( "span" );
-  				$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
-   				$('#root').append(span);
-				});
-			};
-  		});
-	});  
-});
 /////-starwars
 client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
 	data.posts.forEach(function(posts){
@@ -54,9 +54,9 @@ client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
 			if (tags === tag) {
     			console.log("+");
     			posts.photos.forEach(function(photos){	
-				var span = document.createElement( "span" );
-  				$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
-   				$('#root').append(span);
+				var div = document.createElement( "div" );
+  				$( div ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
+   				$('#root').append(div);
 				});
 			};
   		});
