@@ -13,65 +13,26 @@ var client = tumblr.createClient({
   token_secret: 'Ea55kvKy7GyAktmCZcDN3c9bDBxgiW8hdcP04kK2ITr51QQH5V'
 });
 
-/////-ships
-client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
-	data.posts.forEach(function(posts){
-		posts.tags.forEach(function(tags){ 
-			var tag = "ships";
-			if (tags === tag) {
-    			console.log("+");
-    			posts.photos.forEach(function(photos){	
-				var span = document.createElement( "span" );
-  				$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
-   				$('#root').append(span);
+
+var showPhoto = ( tag, alt_size ) => {
+	client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
+		console.log('data',data);
+		data.posts.forEach(function(posts){
+			if (posts.tags.includes(tag)) {
+    			posts.photos.forEach(function(photo){
+    				var bla = _.filter(photo.alt_sizes, { width:alt_size.width})[0];
+					var span = document.createElement( "span" );
+					$( span ).append('<img src="'+bla.url+'">');	  		  		
+					$('#root').append(span);
 				});
-			};
-  		});
-	});  
-});
-/////-crimea
-client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
-	data.posts.forEach(function(posts){
-		posts.tags.forEach(function(tags){ 
-			var tag = "crimea";
-			if (tags === tag) {
-    			console.log("+");
-    			posts.photos.forEach(function(photos){	
-				var span = document.createElement( "span" );
-  				$( span ).append('<img src="'+photos.original_size.url+'" width="540" height="360">');	  		  		
-   				$('#root').append(span);
-				});
-			};
-  		});
-		
-	});  
-});
-/////-starwars
-client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
-	data.posts.forEach(function(posts){
-		posts.tags.forEach(function(tags){ 
-			var tag = "starwars";
-			if (tags === tag) {
-    			console.log("+");
-    			posts.photos.forEach(function(photos){	
-				var div = document.createElement( "div" );
-  				$( div ).append('<img src="'+photos.original_size.url+'">');	  		  		
-   				$('#root').append(div);
-				});
-			};
-  		});
+			};			
+		});  
 	});
-	console.log(data);  
-});
+};
 
-
-
-
-
-
-
-
-
+showPhoto("crimea", {width: 400, height: 266});
+showPhoto("ships", {width: 400, height: 266});
+showPhoto("starwars", {width: 400, height: 266});
 
 
 
