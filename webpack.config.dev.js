@@ -12,11 +12,6 @@ config = {
             'webpack-hot-middleware/client',
             './index.js'
         ],
-        'Vendors': [
-            'react',
-            'react-dom',
-            'lodash'
-        ]
     },
     /////////////////
      node: {
@@ -45,11 +40,6 @@ config = {
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-            name     : 'Vendors',
-            filename : 'Vendors.js',
-            minChunks: Infinity
-        }),
         new webpack.ProvidePlugin({
             'window._': 'lodash',
             _         : 'lodash'

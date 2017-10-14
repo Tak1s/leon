@@ -1,9 +1,7 @@
-import data from './mock/data';
 import $ from 'jquery';
-import mustache from 'mustache';
 import tumblr from 'tumblr.js';
-import imagesloaded from 'imagesloaded';
-import layout from 'masonry-layout';
+// import imagesloaded from 'imagesloaded';
+// import layout from 'masonry-layout';
 // import bootstrap from 'bootstrap';
 // import jR from 'jsrender';
 // import handlebars from 'handlebars';
@@ -29,7 +27,7 @@ var client = tumblr.createClient({
 		data.posts.forEach(function(posts){
     		posts.photos.forEach(function(photo){
     			var smallPhoto = photo.alt_sizes[5].url;
-    			var mediumPhoto = photo.alt_sizes[3].url;
+    			var mediumPhoto = photo.alt_sizes[4].url;
     			var largePhoto = photo.original_size.url;
 				var div = document.createElement( "div" );
 				// if (photo.alt_sizes[3].height >=600){
@@ -43,25 +41,35 @@ var client = tumblr.createClient({
 			});
 		});  
 	});
-	// jQuery(function($){
-	// 	$('.grid').masonry({
-	// 		itemSelector:".item",
-	// 		columnWidth: ".item",
-	// 		persentPosition: true
+	$(window).on('load',function(){
+		// $('.grid').masonry({
+		// 	itemSelector:".item",
+		// 	columnWidth: ".item",
+		// 	persentPosition: true,
+		// 	originTop: false
+		// });
+		var grid = document.querySelector('.grid');
+		console.log('grid', grid)
+		var msnry = new Masonry( grid, {
+			itemSelector:".item",
+			columnWidth: ".item",
+			persentPosition: true,
+			originTop: true
+		});
+		console.log('grid2')
+	});
+
+	// $(window).on('load',function(){
+	// 	var container = $(".grid");
+	// 		container.imagesLoaded(function(){
+	// 			container.masonry({
+	// 				columnWidth: ".item",
+	// 				itemSelector:".item",
+	// 				persentPosition: true,
+	// 				originTop: false	
+	// 		});
 	// 	});
 	// });
-
-	$(window).on('load',function(){
-		var $container = $(".grid");
-			$container.imagesLoaded(function(){
-				$container.masonry({
-					columnWidth: ".item",
-					itemSelector:".item",
-					persentPosition: true,
-					originTop: false	
-			});
-		});
-	});
 
 // onclick="on()"
 // function on() {
