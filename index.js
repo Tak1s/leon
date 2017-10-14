@@ -1,43 +1,76 @@
 import data from './mock/data';
 import $ from 'jquery';
 import mustache from 'mustache';
+import tumblr from 'tumblr.js';
+import imagesloaded from 'imagesloaded';
+import layout from 'masonry-layout';
+// import bootstrap from 'bootstrap';
 // import jR from 'jsrender';
 // import handlebars from 'handlebars';
-import tumblr from 'tumblr.js';
 
-/////-----tumbler
+// /////-----tumbler-----pasajero-0
+// var client = tumblr.createClient({
+//   consumer_key: 'Y1D72WCSyyKAe5owRcr7n0j5WAVhITMOCqrW2phNLWzKZfcHCZ',
+//   consumer_secret: 'Ey25jfEaEa18Uvzpr74TX1uhPWLCmjB0L8qq8NjRfO9DLa0SmG',
+//   token: 'LN7ySxEthypGmcuMEpixksHwJJOsCpNOexdlzAYyb5OEX8cKtz',
+//   token_secret: 'Ea55kvKy7GyAktmCZcDN3c9bDBxgiW8hdcP04kK2ITr51QQH5V'
+// });
+
+// /////-----tumbler-----valen-romanovskaya
 var client = tumblr.createClient({
-  consumer_key: 'Y1D72WCSyyKAe5owRcr7n0j5WAVhITMOCqrW2phNLWzKZfcHCZ',
-  consumer_secret: 'Ey25jfEaEa18Uvzpr74TX1uhPWLCmjB0L8qq8NjRfO9DLa0SmG',
-  token: 'LN7ySxEthypGmcuMEpixksHwJJOsCpNOexdlzAYyb5OEX8cKtz',
-  token_secret: 'Ea55kvKy7GyAktmCZcDN3c9bDBxgiW8hdcP04kK2ITr51QQH5V'
+  consumer_key: 'kVT2VuJt225CBW8wVs7uKg0Qv044wYdpJl5pVXnohQbjgpUeDu',
+  consumer_secret: 'yVE6gEZLPz6MYRJdW3ayyk2WaTv7NJ6qpPy2aal42pfHoaHx5E',
+  token: 'Q96oXJGbA3W9Svdr0aOE5PPJFZtRqN7tGJMuestywCcH0wL2rO',
+  token_secret: 'xLtVp4krrF3outAxuj04rQP8sudIiYFyxk9KbU7wpWUM3ittSq'
 });
 
-
-var showPhoto = ( tag, alt_size ) => {
-	client.blogPosts('pasajero-0.tumblr.com', function (err, data) {
+	client.blogPosts('valen-romanovskaya.tumblr.com',{type:'photo', tag:TagName, limit:50}, (err, data)=> {
 		console.log('data',data);
 		data.posts.forEach(function(posts){
-			if (posts.tags.includes(tag)) {
-    			posts.photos.forEach(function(photo){
-    				var bla = _.filter(photo.alt_sizes, { width:alt_size.width})[0];
-					var span = document.createElement( "span" );
-					$( span ).append('<img src="'+bla.url+'">');	  		  		
-					$('#root').append(span);
-				});
-			};			
+    		posts.photos.forEach(function(photo){
+    			var smallPhoto = photo.alt_sizes[5].url;
+    			var mediumPhoto = photo.alt_sizes[3].url;
+    			var largePhoto = photo.original_size.url;
+				var div = document.createElement( "div" );
+				// if (photo.alt_sizes[3].height >=600){
+				// 	$( div ).addClass( "col-sm-4 col-md-3 col-xs-6 item height2" );
+				// }else{
+				// 	$( div ).addClass( "col-sm-4 col-md-3 col-xs-6 item height1" );
+				// };
+				$( div ).addClass( "col-sm-4 col-md-3 col-xs-6 item" );
+				$( div ).append('<a href='+largePhoto+'><img src="'+mediumPhoto+'"></a>');	  		  		
+				$('#photoalbum').append(div);
+			});
 		});  
 	});
-};
+	// jQuery(function($){
+	// 	$('.grid').masonry({
+	// 		itemSelector:".item",
+	// 		columnWidth: ".item",
+	// 		persentPosition: true
+	// 	});
+	// });
 
-showPhoto("crimea", {width: 400, height: 266});
-showPhoto("ships", {width: 400, height: 266});
-showPhoto("starwars", {width: 400, height: 266});
+	$(window).on('load',function(){
+		var $container = $(".grid");
+			$container.imagesLoaded(function(){
+				$container.masonry({
+					columnWidth: ".item",
+					itemSelector:".item",
+					persentPosition: true,
+					originTop: false	
+			});
+		});
+	});
 
+// onclick="on()"
+// function on() {
+//     document.getElementById("overlay").style.display = "block";
+// }
 
-
-
-
+// function off() {
+//     document.getElementById("overlay").style.display = "none";
+// }
 
 //------------------------------------TASK_1----------------------------------------------//
 
@@ -197,3 +230,4 @@ showPhoto("starwars", {width: 400, height: 266});
 //  	    });
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+
