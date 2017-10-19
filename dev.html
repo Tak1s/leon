@@ -4,44 +4,136 @@
   <meta charset="UTF-8">
   <title>PB-Dev</title>
   <link rel="stylesheet" property='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <style type="text/css">
-    #root{
-      background-color: lightblue; 
-      width: 80%;
+    #photoalbum{ 
+      width: 52vw;
       margin: 30px auto;
-      border-radius:10px;
-      /*overflow: hidden;*/
-    }
-    .grid{
-      padding: 0;
+      border-radius:20px;/*
+      overflow: hidden;*/
     }
     .item{
-      padding: 0;
+    	display: flex;
+	  	align-items: stretch;
+	  	justify-content: center;
+	  	cursor: pointer;
     }
-    .item img{
-      max-width: 100%;
+    .item2{
+		grid-area: span 2;
+		display: flex;
+	  	align-items: stretch;
+	  	justify-content: center;
+	  	cursor: pointer;
     }
-    .height1 { height: 100%; }
-    .height2 { height: 50%; }
+	/*.grid div a {
+	  display: flex;
+	  align-items: stretch;
+	}*/
+    .grid { 
+	  display: grid;
+	  grid-template-columns: repeat(6, 1fr);
+	 }
+	@media (max-width: 2400px) {
+     .grid { 
+	  display: grid;
+	  grid-template-columns: repeat(5, 1fr);
+	  }
+	}
+	@media (max-width: 1925px) {
+     .grid { 
+	  display: grid;
+	  grid-template-columns: repeat(4, 1fr);
+	  }
+	}
+	@media (max-width: 1445px) {
+     .grid { 
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	  }
+	}
+	@media (max-width: 1050px) {
+     .grid { 
+	  display: grid;
+	  grid-gap: 5px;
+	  grid-template-columns: repeat(2, 1fr);
+	  }
+	}
+	#overlay {
+	    position: fixed;
+	    display: none;
+	    width: 100%; 
+	    height: 100%;
+	    top: 0; 
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    background-color: rgba(0,0,0,0.5);
+	}
+	.close-btn{
+		display: block;
+		background-color: tomato;
+		text-align: center;
+		cursor: pointer;
+		width: 2%;
+		height: 1%;
+		margin-top: .5%;
+		margin-left: 95%;
+		border-radius: 5px;
+		overflow: hidden;
+	 	}
+	.clear-ico{
+		color: white;
+		display: flex;
+    	justify-content: center;
+	}	
+	.slide {
+		display: flex;
+	}
+	.slide img {
+		max-width: 1280px;
+		max-height: 900px;
+		border-radius: 10px;
+		margin:  0 auto;
+	}
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <!-- <script src="jquery-imagefill.js"></script> -->
-  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
-  <!-- <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
   <script type="text/javascript">
     var TagName = 'wedding';
   </script>
 </head>
 <body>
     <div id="root" class="container-fluid">
-      <div class="grid">
-        <div id="photoalbum" class="row"></div>
-      </div> 
+        <div id="photoalbum" class="grid"></div>
     </div>
-    <div id="overlay"></div>
-    <script src="/assets/Bundle.js" type="text/javascript" charset="utf-8"></script>
+
+    <div id="overlay">
+      <div>
+    	<div onclick="off()" class="close-btn"><i class="material-icons clear-ico">clear</i></div>
+    		<div class="slider"></div>
+      </div>
+    </div>
+
+  <script>
+	function on() {
+	    document.getElementById("overlay").style.display = "block";
+	}
+
+	function off() {
+	    document.getElementById("overlay").style.display = "none";
+	}
+  </script>
+  <script>
+  $('.slider').slick({
+  		slidesToShow: 1,
+  		centerMode: true,
+  		variableWidth: true
+		});
+  </script>
+  <script src="/assets/Bundle.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
