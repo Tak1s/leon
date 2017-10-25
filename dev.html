@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>PB-Dev</title>
   <link rel="stylesheet" property='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <style type="text/css">
     #photoalbum{ 
@@ -26,10 +25,14 @@
 	  	justify-content: center;
 	  	cursor: pointer;
     }
-	/*.grid div a {
+    .item .item2 img{
+    	transform: scale(1.4);
+	  	overflow: hidden;
+    }
+	.grid div a {
 	  display: flex;
 	  align-items: stretch;
-	}*/
+	}
     .grid { 
 	  display: grid;
 	  grid-template-columns: repeat(6, 1fr);
@@ -69,15 +72,22 @@
 	    right: 0;
 	    bottom: 0;
 	    background-color: rgba(0,0,0,0.5);
+	    z-index: 100;
+	}
+	.gap{
+		height: 1%;
+	}
+	.sheet{
+		display: inline-flex;
+		padding-left: 4vw;
 	}
 	.close-btn{
 		display: block;
 		background-color: tomato;
 		text-align: center;
 		cursor: pointer;
-		width: 2%;
-		height: 1%;
-		margin-top: .5%;
+		width: 25px;
+    	height: 25px;
 		margin-left: 95%;
 		border-radius: 5px;
 		overflow: hidden;
@@ -86,14 +96,35 @@
 		color: white;
 		display: flex;
     	justify-content: center;
-	}	
-	.slide {
-		display: flex;
 	}
-	.slide img {
+	.chevron{
+		color: white;
+		display: flex;
+    	font-size: 7vw;
+    	text-align: center;
+    	margin-top: 17vw;
+    	width: inherit;
+	}	
+	.GalleryPhotoSlide {
+		display: flex;
+		width: 80vw;
+	}
+	.backward{
+		display: inline-flex;
+		/*background: tomato;*/
+		width: 5vw;
+		height: 850px;
+	}
+	.forward{
+		display: inline-flex;
+		/*background: lime;*/
+		width: 5vw;
+		height: 850px;
+	}
+	.GalleryPhotoSlide img {
 		max-width: 1280px;
-		max-height: 900px;
-		border-radius: 10px;
+		max-height: 880px;
+		border-radius: 5px;
 		margin:  0 auto;
 	}
   </style>
@@ -101,7 +132,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
   <script type="text/javascript">
     var TagName = 'wedding';
   </script>
@@ -112,28 +142,17 @@
     </div>
 
     <div id="overlay">
-      <div>
-    	<div onclick="off()" class="close-btn"><i class="material-icons clear-ico">clear</i></div>
-    		<div class="slider"></div>
-      </div>
+    <div class="gap"></div>
+    <div class="close-btn"><i class="material-icons clear-ico">clear</i></div>
+    <div class="gap"></div>
+    <div class="sheet">
+    	<div class="backward"><i class="material-icons chevron">chevron_left</i></div>
+    		<div class="GalleryPhotoSlider"></div>
+    	<div class="forward"><i class="material-icons chevron">chevron_right</i></div>
+    </div>	
+    <div class="gap"></div>
     </div>
 
-  <script>
-	function on() {
-	    document.getElementById("overlay").style.display = "block";
-	}
-
-	function off() {
-	    document.getElementById("overlay").style.display = "none";
-	}
-  </script>
-  <script>
-  $('.slider').slick({
-  		slidesToShow: 1,
-  		centerMode: true,
-  		variableWidth: true
-		});
-  </script>
   <script src="/assets/Bundle.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
