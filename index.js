@@ -9,7 +9,7 @@ var client = tumblr.createClient({
 });
 
 	client.blogPosts('valen-romanovskaya.tumblr.com',{type:'photo', tag:TagName, limit:50}, (err, data)=> {
-		console.log('data', data);
+		// console.log('data', data);
 		data.posts.forEach(function(posts){
     		posts.photos.forEach(function(photo){
     			var mediumPhoto = photo.alt_sizes[4];
@@ -24,14 +24,30 @@ var client = tumblr.createClient({
 				$('#photoalbum').append(div);
 			});
 		}); 
-		$('#photoalbum').on('click', "img", function on(){
-			document.getElementById("overlay").style.display = "block";
-			var RLP = $(this).attr( "rel" );
-			$('.GalleryPhotoSlider').append('<div class="GalleryPhotoSlide"><img src="'+RLP+'"></div>');
-			console.log("^_^", RLP) 
+		$('#photoalbum').on('click', "div", function on(){
+			$("#overlay").css("display", "block");
+			var thisLargePhoto = $(this).children().attr( "rel" );
+			var nextLargePhoto = $(this).next().children().attr( "rel" );
+			var prevLargePhoto = $(this).prev().children().attr( "rel" );
+			$('.GalleryPhotoSlider').append('<div class="GalleryPhotoSlide"><img src="'+thisLargePhoto+'"></div>');
+
+			console.log("^_^ this >", thisLargePhoto)
+	    	console.log("o_o next >", nextLargePhoto)
+	    	console.log("-_- prev >", prevLargePhoto)
+
+	    	$('.forward').on('click', function (){
+	    		$("div.GalleryPhotoSlide").empty();
+	    		$('.GalleryPhotoSlider').append('<div class="GalleryPhotoSlide"><img src="'+nextLargePhoto+'"></div>');
+	    	});	
+	    	$('.backward').on('click', function (){
+	    		// $('.GalleryPhotoSlide').replaceWith('<div class="GalleryPhotoSlide"><img src="'+prevLargePhoto+'"></div>');
+	    		$("div.GalleryPhotoSlide").empty();
+	    		$('.GalleryPhotoSlider').append('<div class="GalleryPhotoSlide"><img src="'+prevLargePhoto+'"></div>');
+	    	});	
+
 	    });
 	    $('.close-btn').on('click', function off(){
-			document.getElementById("overlay").style.display = "none";
+			$("#overlay").css("display", "none");
 	    	$("div.GalleryPhotoSlide").empty();
 	    });
 	});

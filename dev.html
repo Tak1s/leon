@@ -121,6 +121,10 @@
 		width: 5vw;
 		height: 850px;
 	}
+	.hovered :hover {
+	/*	background-color: rgba(0,0,0,0.3);*/
+		cursor: pointer;
+	}
 	.GalleryPhotoSlide img {
 		max-width: 1280px;
 		max-height: 880px;
@@ -143,12 +147,12 @@
 
     <div id="overlay">
     <div class="gap"></div>
-    <div class="close-btn"><i class="material-icons clear-ico">clear</i></div>
+    <div class="close-btn hovered"><i class="material-icons clear-ico">clear</i></div>
     <div class="gap"></div>
     <div class="sheet">
-    	<div class="backward"><i class="material-icons chevron">chevron_left</i></div>
+    	<div class="backward hovered"><i class="material-icons chevron">chevron_left</i></div>
     		<div class="GalleryPhotoSlider"></div>
-    	<div class="forward"><i class="material-icons chevron">chevron_right</i></div>
+    	<div class="forward hovered"><i class="material-icons chevron">chevron_right</i></div>
     </div>	
     <div class="gap"></div>
     </div>
