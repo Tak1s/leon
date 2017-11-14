@@ -44,7 +44,8 @@ config = {
         }),
         new webpack.ProvidePlugin({
             'window._': 'lodash',
-            _         : 'lodash'
+            _         : 'lodash',
+            $         : 'jquery',
         }),
         new webpack.ProvidePlugin({
             fetch  : 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
