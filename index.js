@@ -43,7 +43,11 @@ const onHover = (rel) => {
     const [row, col] = rel.split('_');
     _.each(document.querySelectorAll('td'), (el)=>{
         const [rowEl, colEl] = el.getAttribute('rel').split('_');
-        if ((rowEl === row && colEl < col) || (rowEl < row && colEl === col) ) {
+        if (
+            (parseFloat(rowEl) === parseFloat(row)
+                && parseFloat(colEl) < parseFloat(col))
+            || (parseFloat(rowEl) < parseFloat(row)
+                && parseFloat(colEl) === parseFloat(col)) ) {
             el.classList.add('secondHover');
         }
     });
