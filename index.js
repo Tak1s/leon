@@ -10,7 +10,6 @@ const client = tumblr.createClient({
 });
 
 client.blogPosts('valen-romanovskaya.tumblr.com', {type: 'photo', tag: TagName, limit: 50}, (err, data)=> {
-    // console.log('data', data);
     data.posts.forEach(function(posts) {
         posts.photos.forEach(function(photo) {
             const mediumPhoto = photo.alt_sizes[4];
@@ -30,24 +29,40 @@ client.blogPosts('valen-romanovskaya.tumblr.com', {type: 'photo', tag: TagName, 
 let elem = null;
 
 const getRel = () => {
-    console.log('elem', elem);
     const thisLargePhoto = $(elem).children().attr('rel');
     $('div.GalleryPhotoSlide').empty();
     $('.GalleryPhotoSlider').append('<div class="GalleryPhotoSlide"><img src="' + thisLargePhoto + '"></div>');
 };
+const chevronDisplay = () => {
+    const next = $(elem).next().children().attr('rel');
+    const prev = $(elem).prev().children().attr('rel');
+    if (prev == undefined) {
+    $('.backward>i').css('display', 'none');
+    } else {
+    $('.backward>i').css('display', 'block');   
+    };
+    if (next == undefined) {
+    $('.forward>i').css('display', 'none');
+    } else {
+    $('.forward>i').css('display', 'block');   
+    };
+};
 
-$('#photoalbum').on('click', 'div', (ev) => {
+$('#photoalbum').on('click', 'div', (event) => {
     $('#overlay').css('display', 'block');
-    console.log(ev);
-    elem = ev.currentTarget;
+    console.log(event);
+    elem = event.currentTarget;
+    chevronDisplay();
     getRel();
 
-    $('.forward').on('click', () => {
-        elem = $(elem).next();
+    $('.backward').on('click', 'i', () => {
+        elem = $(elem).prev();
+        chevronDisplay();
         getRel();
     });
-    $('.backward').on('click', () => {
-        elem = $(elem).prev();
+    $('.forward').on('click', 'i', () => {
+        elem = $(elem).next();
+        chevronDisplay();
         getRel();
     });
 });
@@ -56,3 +71,4 @@ $('.close-btn').on('click', () => {
     $('#overlay').css('display', 'none');
     $('div.GalleryPhotoSlide').empty();
 });
+
