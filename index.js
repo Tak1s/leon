@@ -1,7 +1,7 @@
 import $ from 'jquery'; 
 
+const dataTableHead = ['УСЛУГИ','iPhone 4/4s','iPhone<br> 5/5c/5s/SE','iPhone 6','iPhone 6+','iPhone 6s','iPhone 6s+','iPhone 7','iPhone 7+','iPhone 8','iPhone 8+'];
 const data = [
-	['УСЛУГИ','iPhone 4/4s','iPhone<br> 5/5c/5s/SE','iPhone 6','iPhone 6+','iPhone 6s','iPhone 6s+','iPhone 7','iPhone 7+','iPhone 8','iPhone 8+'],
 	['Замена стекла<br> (оригинальное качество)','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.'],
 	['Замена дисплея<br> (оригинальное качество)','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.'],
 	['Замена дисплея <br> (копия ААА)','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.','2000 руб.'],
@@ -36,9 +36,14 @@ const data = [
 ];
 
 const table = document.createElement('table');
-// table.id = 'table';
 const tbody = document.createElement('tbody');
+const thead = document.createElement('thead');
+thead.id = 'table-head';
+const thtr = document.createElement('tr');
 
+const theadList = _.map(dataTableHead, (value) =>(
+	`<td>${value}</td>`
+));
 const trList = _.map(data, (arr, indexRow) => {
     const tdList = _.map(arr, (val, indexCol) => (
         `<td rel='${indexRow}_${indexCol}'>${val}</td>`
@@ -46,10 +51,11 @@ const trList = _.map(data, (arr, indexRow) => {
     return `<tr>${tdList.join('')}</tr>`;
 });
 
-console.log(data[0]); 
-
+thtr.innerHTML = theadList.join('');
 tbody.innerHTML = trList.join('');
 table.appendChild(tbody);
+table.appendChild(thead);
+thead.appendChild(thtr);
 document.getElementById('root').appendChild(table);
 
 const onHover = (rel) => {
