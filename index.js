@@ -27,11 +27,22 @@ client.blogPosts('valen-romanovskaya.tumblr.com', {type: 'photo', tag: TagName, 
 });
 
 let elem = null;
+let ww = $( window ).width();
+let wh = $( window ).height();
+console.log("ww", ww/4);
+console.log("wh", wh/2);
 
 const getRel = () => {
     const thisLargePhoto = $(elem).children().attr('rel');
     $('div.GalleryPhotoSlide').empty();
     $('.GalleryPhotoSlider').append('<div class="GalleryPhotoSlide"><img src="' + thisLargePhoto + '"></div>');
+    // if (thisLargePhoto.height > thisLargePhoto.width){
+    //     $('.GalleryPhotoSlider>img').css('max-height',''+(wh-100)+'');
+    //     $('.GalleryPhotoSlider>img').css('max-width',''+(ww/4)+'')
+    // } else if (thisLargePhoto.height < thisLargePhoto.width){
+    //     $('.GalleryPhotoSlider>img').css('max-width',''+(ww-400)+'');
+    //     $('.GalleryPhotoSlider>img').css('max-height',''+(wh/4)+'');
+    // }
 };
 const chevronDisplay = () => {
     const next = $(elem).next().children().attr('rel');
@@ -50,6 +61,7 @@ const chevronDisplay = () => {
 
 $('#photoalbum').on('click', 'div', (event) => {
     $('#overlay').css('display', 'block');
+    $('body').css('overflow', 'hidden');
     console.log(event);
     elem = event.currentTarget;
     chevronDisplay();
@@ -69,6 +81,8 @@ $('#photoalbum').on('click', 'div', (event) => {
 
 $('.close-btn').on('click', () => {
     $('#overlay').css('display', 'none');
+    $('body').css('overflow', 'auto');
     $('div.GalleryPhotoSlide').empty();
+    elem = null;
 });
 
